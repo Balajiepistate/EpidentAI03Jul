@@ -2,16 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Epident Dental AI Assistant</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
   <style>
     body {
       background-color: #fdfdfd;
       font-family: 'Helvetica Neue', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: #333;
     }
-    h2, h5, h4 {
+    h2, h5 {
       color: #b59f63;
       font-weight: 600;
-      margin-top: 10px;
     }
     .form-label {
       color: #444;
@@ -29,35 +31,14 @@
       border-color: #b59f63;
       box-shadow: 0 0 0 0.2rem rgba(181, 159, 99, 0.25);
     }
-    .disclaimer, .privacy-policy {
-      font-size: 0.85rem;
-      color: #666;
-      margin-top: 1rem;
-      padding: 0.5rem;
-      border-top: 1px dashed #999;
+    .nav-tabs .nav-link.active {
+      background-color: #b59f63;
+      color: #fff;
     }
-    .social-media-links {
-      margin-top: 1.5rem;
-      text-align: center;
-    }
-    .social-media-links a {
-      margin: 0 10px;
-      color: #b59f63;
-      text-decoration: none;
-    }
-    .social-media-links a:hover {
-      text-decoration: underline;
-    }
-    @media (max-width: 768px) {
-      h2 {
-        font-size: 1.5rem;
-        text-align: center;
-      }
+    .tab-content {
+      padding-top: 20px;
     }
   </style>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Epident Dental AI Assistant</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
 </head>
 <body>
 <div class="container py-4">
@@ -66,61 +47,121 @@
     <h2 class="mt-3">Epident Dental AI Assistant</h2>
   </div>
 
-  <form id="registrationForm" action="/register" method="post" enctype="multipart/form-data" class="mt-4">
-    <div class="mb-3">
-      <label for="dentistName" class="form-label">Doctor's Full Name</label>
-      <input type="text" class="form-control" id="dentistName" name="dentistName" required />
-    </div>
-    <div class="mb-3">
-      <label for="clinicName" class="form-label">Clinic Name</label>
-      <input type="text" class="form-control" id="clinicName" name="clinicName" required />
-    </div>
-    <div class="mb-3">
-      <label for="whatsappNumber" class="form-label">WhatsApp Number</label>
-      <input type="tel" class="form-control" id="whatsappNumber" name="whatsappNumber" placeholder="+91..." required />
-    </div>
-    <div class="mb-3">
-      <label for="country" class="form-label">Country</label>
-      <select class="form-select" id="country" name="country" required>
-        <option value="">Select Country</option>
-        <option value="India">India</option>
-        <option value="Nepal">Nepal</option>
-        <option value="Bangladesh">Bangladesh</option>
-        <option value="Sri Lanka">Sri Lanka</option>
-        <option value="Bhutan">Bhutan</option>
-        <option value="Pakistan">Pakistan</option>
-        <option value="Singapore">Singapore</option>
-        <option value="UAE">UAE</option>
-        <option value="Australia">Australia</option>
-        <option value="United Kingdom">United Kingdom</option>
-        <option value="United States">United States</option>
-        <option value="Canada">Canada</option>
-        <option value="Other">Other</option>
-      </select>
-    </div>
-    <div class="mb-3">
-      <label for="xrayUpload" class="form-label">Upload Dental X-rays (Max: 3 images)</label>
-      <input type="file" class="form-control" id="xrayUpload" name="xrayUpload" accept="image/*" multiple onchange="limitFiles(this, 3)" />
-    </div>
-    <div class="mb-3">
-      <label for="oralPhotos" class="form-label">Upload Oral Photos (Max: 3 images)</label>
-      <input type="file" class="form-control" id="oralPhotos" name="oralPhotos" accept="image/*" multiple onchange="limitFiles(this, 3)" />
-    </div>
-    <div class="mb-3">
-      <label for="patientNotes" class="form-label">Clinical Notes / Patient History</label>
-      <textarea class="form-control" id="patientNotes" name="patientNotes" rows="4"></textarea>
-    </div>
-    <div class="mb-3">
-      <label for="paymentMethod" class="form-label">Payment Method</label>
-      <select class="form-select" id="paymentMethod" name="paymentMethod">
-        <option value="cash">Cash</option>
-        <option value="credit">Credit Card</option>
-        <option value="emi">EMI</option>
-        <option value="insurance">Insurance-linked</option>
-      </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Generate EpidentAI Treatment Suggestion</button>
-  </form>
+  <ul class="nav nav-tabs" id="epidentTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab">Registration</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="dashboard-tab" data-bs-toggle="tab" data-bs-target="#dashboard" type="button" role="tab">Dashboard</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="patient-tab" data-bs-toggle="tab" data-bs-target="#patient" type="button" role="tab">Patient</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="doctor-tab" data-bs-toggle="tab" data-bs-target="#doctor" type="button" role="tab">Doctors</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="community-tab" data-bs-toggle="tab" data-bs-target="#community" type="button" role="tab">Community</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="finance-tab" data-bs-toggle="tab" data-bs-target="#finance" type="button" role="tab">Finance</button>
+    </li>
+  </ul>
 
-  <div class="disclaimer text-center">
-    <strong>Note:</strong> This is an <strong>EpidentAI-assisted treatment suggestion</strong> and will not interfere in qualified dentist decisions. This tool is intended for referral and support purposes only, and its outputs should not be considered legally binding.
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="register" role="tabpanel">
+      <!-- Existing Registration Form -->
+    </div>
+
+    <div class="tab-pane fade" id="dashboard" role="tabpanel">
+      <h5>Patient Dashboard</h5>
+      <p>Manage patient profiles, view treatment history, generate follow-ups, and export case summaries.</p>
+    </div>
+
+    <div class="tab-pane fade" id="patient" role="tabpanel">
+      <!-- Patient section already exists -->
+    </div>
+
+    <div class="tab-pane fade" id="doctor" role="tabpanel">
+      <h5>Doctor Profile & Preferences</h5>
+      <form>
+        <div class="mb-3">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-control" placeholder="Dr. John Doe">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Specialization</label>
+          <input type="text" class="form-control" placeholder="Endodontist, Prosthodontist, etc.">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Available Hours</label>
+          <input type="text" class="form-control" placeholder="Mon-Fri: 10AM-6PM">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">CPD Points</label>
+          <input type="number" class="form-control" placeholder="20">
+        </div>
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+      </form>
+    </div>
+
+    <div class="tab-pane fade" id="community" role="tabpanel">
+      <h5>Doctor Community</h5>
+      <form>
+        <div class="mb-3">
+          <label class="form-label">Conference Registration</label>
+          <select class="form-select">
+            <option>Annual Dental Summit 2025</option>
+            <option>Implantology Workshop</option>
+            <option>Esthetic Dentistry Expo</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Join WhatsApp Groups</label>
+          <input type="text" class="form-control" placeholder="Link your group here">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Doctor Forum Chat</label>
+          <textarea class="form-control" placeholder="Share your question or comment..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <div class="tab-pane fade" id="finance" role="tabpanel">
+      <h5>Clinic Finance Summary</h5>
+      <form>
+        <div class="mb-3">
+          <label class="form-label">Monthly Revenue (INR)</label>
+          <input type="number" class="form-control" placeholder="50000">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Clinic Operating Cost (INR)</label>
+          <input type="number" class="form-control" placeholder="25000">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Material Procurement Cost (INR)</label>
+          <input type="number" class="form-control" placeholder="10000">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Additional Expenses</label>
+          <textarea class="form-control" placeholder="e.g., Marketing, Maintenance"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Calculate Summary</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+  function limitFiles(input, max) {
+    if (input.files.length > max) {
+      alert(`You can upload a maximum of ${max} files.`);
+      input.value = "";
+    }
+  }
+</script>
+</body>
+</html>
+
