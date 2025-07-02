@@ -66,88 +66,38 @@
     <li class="nav-item" role="presentation">
       <button class="nav-link" id="finance-tab" data-bs-toggle="tab" data-bs-target="#finance" type="button" role="tab">Finance</button>
     </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="purchase-tab" data-bs-toggle="tab" data-bs-target="#purchase" type="button" role="tab">Clinical Purchase & Offers</button>
+    </li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade show active" id="register" role="tabpanel">
-      <!-- Existing Registration Form -->
-    </div>
+    <!-- Existing tabs... -->
 
-    <div class="tab-pane fade" id="dashboard" role="tabpanel">
-      <h5>Patient Dashboard</h5>
-      <p>Manage patient profiles, view treatment history, generate follow-ups, and export case summaries.</p>
-    </div>
-
-    <div class="tab-pane fade" id="patient" role="tabpanel">
-      <!-- Patient section already exists -->
-    </div>
-
-    <div class="tab-pane fade" id="doctor" role="tabpanel">
-      <h5>Doctor Profile & Preferences</h5>
+    <div class="tab-pane fade" id="purchase" role="tabpanel">
+      <h5>Clinical Purchases & Special Offers</h5>
       <form>
         <div class="mb-3">
-          <label class="form-label">Full Name</label>
-          <input type="text" class="form-control" placeholder="Dr. John Doe">
+          <label class="form-label">Dental Product Name</label>
+          <input type="text" class="form-control" placeholder="e.g., Composite Kit, V-Plus Files">
         </div>
         <div class="mb-3">
-          <label class="form-label">Specialization</label>
-          <input type="text" class="form-control" placeholder="Endodontist, Prosthodontist, etc.">
+          <label class="form-label">Supplier</label>
+          <input type="text" class="form-control" placeholder="Dental Depot, Local Vendor, etc.">
         </div>
         <div class="mb-3">
-          <label class="form-label">Available Hours</label>
-          <input type="text" class="form-control" placeholder="Mon-Fri: 10AM-6PM">
+          <label class="form-label">Purchase Amount (INR)</label>
+          <input type="number" class="form-control" placeholder="1000">
         </div>
         <div class="mb-3">
-          <label class="form-label">CPD Points</label>
-          <input type="number" class="form-control" placeholder="20">
-        </div>
-        <button type="submit" class="btn btn-primary">Update Profile</button>
-      </form>
-    </div>
-
-    <div class="tab-pane fade" id="community" role="tabpanel">
-      <h5>Doctor Community</h5>
-      <form>
-        <div class="mb-3">
-          <label class="form-label">Conference Registration</label>
-          <select class="form-select">
-            <option>Annual Dental Summit 2025</option>
-            <option>Implantology Workshop</option>
-            <option>Esthetic Dentistry Expo</option>
-          </select>
+          <label class="form-label">Available Discount</label>
+          <input type="text" class="form-control" placeholder="e.g., 10% Festive Discount">
         </div>
         <div class="mb-3">
-          <label class="form-label">Join WhatsApp Groups</label>
-          <input type="text" class="form-control" placeholder="Link your group here">
+          <label class="form-label">Upload Invoice (Optional)</label>
+          <input type="file" class="form-control">
         </div>
-        <div class="mb-3">
-          <label class="form-label">Doctor Forum Chat</label>
-          <textarea class="form-control" placeholder="Share your question or comment..."></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
-
-    <div class="tab-pane fade" id="finance" role="tabpanel">
-      <h5>Clinic Finance Summary</h5>
-      <form>
-        <div class="mb-3">
-          <label class="form-label">Monthly Revenue (INR)</label>
-          <input type="number" class="form-control" placeholder="50000">
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Clinic Operating Cost (INR)</label>
-          <input type="number" class="form-control" placeholder="25000">
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Material Procurement Cost (INR)</label>
-          <input type="number" class="form-control" placeholder="10000">
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Additional Expenses</label>
-          <textarea class="form-control" placeholder="e.g., Marketing, Maintenance"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Calculate Summary</button>
+        <button type="submit" class="btn btn-primary">Save Purchase</button>
       </form>
     </div>
   </div>
@@ -164,4 +114,3 @@
 </script>
 </body>
 </html>
-
